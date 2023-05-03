@@ -29,3 +29,23 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+// export const GET_USER_PREFERENCES = gql`
+//   query getUserPreferences($id: ID!) {
+//     profile(profileId: $id) {
+//       quoteApi
+//       videoApi
+//       pictureApi
+//     }
+//   }
+// `;
+
+export const QUERY_USER_PREFERENCES = gql`
+  query GetUserPreferences {
+    userPreferences {
+      quoteApi
+      videoApi
+      pictureApi
+    }
+  }
+`;

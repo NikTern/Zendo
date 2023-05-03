@@ -19,6 +19,21 @@ const profileSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  quoteApi: {
+    type: String,
+    enum: ['QUOTE_API_1', 'QUOTE_API_2', 'QUOTE_API_3'],
+    default: 'QUOTE_API_1',
+  },
+  videoApi: {
+    type: String,
+    enum: ['VIDEO_API_1', 'VIDEO_API_2', 'VIDEO_API_3'],
+    default: 'VIDEO_API_1',
+  },
+  pictureApi: {
+    type: String,
+    enum: ['PICTURE_API_1', 'PICTURE_API_2', 'PICTURE_API_3'],
+    default: 'PICTURE_API_1',
+  },
   skills: [
     {
       type: String,
