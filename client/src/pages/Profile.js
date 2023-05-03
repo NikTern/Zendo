@@ -10,6 +10,8 @@ import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 
 import Auth from '../utils/auth';
 
+import ApiSourceSelection from '../components/ApiSourceSelection';
+
 const Profile = () => {
   const { profileId } = useParams();
 
@@ -59,6 +61,12 @@ const Profile = () => {
       <div className="my-4 p-4" style={{ border: '1px dotted #1a1a1a' }}>
         <SkillForm profileId={profile._id} />
       </div>
+
+      <div>
+        <h1>Your Profile</h1>
+        <ApiSourceSelection />
+      </div>
+
     </div>
   );
 };

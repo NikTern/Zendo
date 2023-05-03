@@ -43,3 +43,14 @@ export const REMOVE_SKILL = gql`
     }
   }
 `;
+
+export const UPDATE_APIS = gql`
+  mutation updateApis($quoteApi: QuoteApi, $videoApi: VideoApi, $pictureApi: PictureApi) {
+    updateApis(quoteApi: $quoteApi, videoApi: $videoApi, pictureApi: $pictureApi) {
+      _id
+      quoteApi
+      videoApi
+      pictureApi
+    }
+  }
+`;
