@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { UPDATE_APIS } from '../../utils/mutations';
 
@@ -6,15 +6,21 @@ import { QUERY_USER_PREFERENCES } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
 
 const ApiSourceSelection = () => {
-  const { data: preferencesData } = useQuery(QUERY_USER_PREFERENCES, {
-    onError: (error) => console.error(error),
-  });
+  const { loading, error, data: preferencesData } = useQuery(QUERY_USER_PREFERENCES);
 
   const userPreferences = preferencesData?.userPreferences;
 
-  const [quoteApi, setQuoteApi] = useState(userPreferences?.quoteApi || 'QUOTE_API_1');
-  const [videoApi, setVideoApi] = useState(userPreferences?.videoApi || 'VIDEO_API_1');
-  const [pictureApi, setPictureApi] = useState(userPreferences?.pictureApi || 'PICTURE_API_1');
+  const [quoteApi, setQuoteApi] = useState(null);
+  const [videoApi, setVideoApi] = useState(null);
+  const [pictureApi, setPictureApi] = useState(null);
+
+  useEffect(() => {
+    if (userPreferences) {
+      setQuoteApi(userPreferences.quoteApi || 'QUOTE_API_1');
+      setVideoApi(userPreferences.videoApi || 'VIDEO_API_1');
+      setPictureApi(userPreferences.pictureApi || 'PICTURE_API_1');
+    }
+  }, [userPreferences]);
 
   const [updateApis] = useMutation(UPDATE_APIS, {
     refetchQueries: [{ query: QUERY_USER_PREFERENCES }],
@@ -28,6 +34,11 @@ const ApiSourceSelection = () => {
       console.error('Error updating API sources:', error);
     }
   };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  if (!quoteApi || !videoApi || !pictureApi) return null;
+
 
   return (
     <form onSubmit={handleSubmit}>

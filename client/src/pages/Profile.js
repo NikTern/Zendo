@@ -1,70 +1,53 @@
 import React from 'react';
 
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import SkillsList from '../components/SkillsList';
 import SkillForm from '../components/SkillForm';
 
-import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
+import { QUERY_ME } from '../utils/queries';
 
 import Auth from '../utils/auth';
 
 import ApiSourceSelection from '../components/ApiSourceSelection';
 
 const Profile = () => {
-  const { profileId } = useParams();
+  // Executing the QUERY_ME query to fetch the logged-in user's information
+  const { loading, data } = useQuery(QUERY_ME);
 
-  // If there is no `profileId` in the URL as a parameter, execute the `QUERY_ME` query instead for the logged in user's information
-  const { loading, data } = useQuery(
-    profileId ? QUERY_SINGLE_PROFILE : QUERY_ME,
-    {
-      variables: { profileId: profileId },
-    }
-  );
+  // Getting the user profile data from the query results
+  const profile = data?.me || {};
 
-  // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_PROFILE` query
-  const profile = data?.me || data?.profile || {};
-
-  // Use React Router's `<Navigate />` component to redirect to personal profile page if username is yours
-  if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
-    return <Navigate to="/me" />;
+  // Redirecting to the login page if the user is not logged in
+  if (!Auth.loggedIn()) {
+    return <Navigate to="/login" />;
   }
 
+  // Displaying a loading message while the query is being executed
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  if (!profile?.name) {
-    return (
-      <h4>
-        You need to be logged in to see your profile page. Use the navigation
-        links above to sign up or log in!
-      </h4>
-    );
-  }
-
+  // Rendering the main content of the profile page
   return (
     <div>
-      <h2 className="card-header">
-        {profileId ? `${profile.name}'s` : 'Your'} friends have endorsed these
-        skills...
-      </h2>
+      <h1 className="card-header">{`${profile.name}'s profile`}</h1>
+      <br></br>
 
-      {profile.skills?.length > 0 && (
-        <SkillsList
-          skills={profile.skills}
-          isLoggedInUser={!profileId && true}
-        />
-      )}
+      <h3>Feed Selection</h3>
+      <div>
+        <ApiSourceSelection />
+      </div>
+
+      <br></br>
+      <br></br>
+
+      <h3>Saved Items</h3>
+      {profile.skills?.length > 0 && <SkillsList skills={profile.skills} isLoggedInUser={true} />}
 
       <div className="my-4 p-4" style={{ border: '1px dotted #1a1a1a' }}>
         <SkillForm profileId={profile._id} />
-      </div>
-
-      <div>
-        <h1>Your Profile</h1>
-        <ApiSourceSelection />
       </div>
 
     </div>
