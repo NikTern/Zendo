@@ -6,7 +6,10 @@ import ProfileList from '../components/ProfileList';
 import { QUERY_PROFILES, QUERY_USER_PREFERENCES } from '../utils/queries';
 
 import { useState, useEffect } from 'react';
+
+//import API components
 import Picture from '../components/ApiRendering/UnsplashImage';
+import Quote from '../components/ApiRendering/GoodreadsQuote';
 
 //import API functions
 import { fetchPicApi1, fetchPicApi2, fetchPicApi3 } from '../utils/api';
@@ -47,6 +50,7 @@ const Home = () => {
   };
 
   const fetchQuote = async () => {
+    console.log('fetchQuote() is called');
     let quoteData;
     switch (preferencesData.userPreferences.quoteApi) {
       case 'GOODREADS_TOPIC1':
@@ -61,7 +65,8 @@ const Home = () => {
       default:
         console.error('Invalid quote API selection');
     }
-    setQuote(quoteData);
+    setQuote(quoteData[0]);
+    console.log('Quote data:', quoteData);
   };
 
   const fetchVideo = async () => {
@@ -90,7 +95,7 @@ const Home = () => {
     <main>
       <div className="flex-row justify-center">
         <Picture data={picture} />
-        {/* ... render other content */}
+        {quote && <Quote data={quote} />}
       </div>
     </main>
   );

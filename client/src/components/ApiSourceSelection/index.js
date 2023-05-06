@@ -48,9 +48,9 @@ const ApiSourceSelection = () => {
         value={quoteApi}
         onChange={(event) => setQuoteApi(event.target.value)}
       >
-        <option value="GOODREADS_TOPIC1">Quote API 1</option>
-        <option value="GOODREADS_TOPIC2">Quote API 2</option>
-        <option value="GOODREADS_TOPIC3">Quote API 3</option>
+        <option value="GOODREADS_TOPIC1">Art</option>
+        <option value="GOODREADS_TOPIC2">Inspirational</option>
+        <option value="GOODREADS_TOPIC3">Love</option>
       </select>
 
       <label htmlFor="videoApi">Video API:</label>
