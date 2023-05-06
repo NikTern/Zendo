@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 // Import ApolloServer to create a GraphQL server
 const { ApolloServer } = require('apollo-server-express');
@@ -22,6 +23,15 @@ const server = new ApolloServer({
 // Use middleware to parse incoming request data
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+
+//API ROUTES
+const apiRoutes = require('./apiRoutes/apiRoutes');
+app.use('/api', apiRoutes);
+
+
+
+
 
 // If in production mode, use the built client files
 if (process.env.NODE_ENV === 'production') {

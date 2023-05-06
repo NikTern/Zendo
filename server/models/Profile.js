@@ -21,18 +21,18 @@ const profileSchema = new Schema({
   },
   quoteApi: {
     type: String,
-    enum: ['QUOTE_API_1', 'QUOTE_API_2', 'QUOTE_API_3'],
-    default: 'QUOTE_API_1',
+    enum: ['GOODREADS_TOPIC1', 'GOODREADS_TOPIC2', 'GOODREADS_TOPIC3'],
+    default: 'GOODREADS_TOPIC1',
   },
   videoApi: {
     type: String,
-    enum: ['VIDEO_API_1', 'VIDEO_API_2', 'VIDEO_API_3'],
-    default: 'VIDEO_API_1',
+    enum: ['YOUTUBE_TOPIC1', 'YOUTUBE_TOPIC2', 'YOUTUBE_TOPIC3'],
+    default: 'YOUTUBE_TOPIC1',
   },
   pictureApi: {
     type: String,
-    enum: ['PICTURE_API_1', 'PICTURE_API_2', 'PICTURE_API_3'],
-    default: 'PICTURE_API_1',
+    enum: ['UNSPLASH_TOPIC1', 'UNSPLASH_TOPIC2', 'UNSPLASH_TOPIC3'],
+    default: 'UNSPLASH_TOPIC1',
   },
   skills: [
     {

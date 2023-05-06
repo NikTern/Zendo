@@ -16,9 +16,9 @@ const ApiSourceSelection = () => {
 
   useEffect(() => {
     if (userPreferences) {
-      setQuoteApi(userPreferences.quoteApi || 'QUOTE_API_1');
-      setVideoApi(userPreferences.videoApi || 'VIDEO_API_1');
-      setPictureApi(userPreferences.pictureApi || 'PICTURE_API_1');
+      setQuoteApi(userPreferences.quoteApi || 'GOODREADS_TOPIC1');
+      setVideoApi(userPreferences.videoApi || 'YOUTUBE_TOPIC1');
+      setPictureApi(userPreferences.pictureApi || 'UNSPLASH_TOPIC1');
     }
   }, [userPreferences]);
 
@@ -48,9 +48,9 @@ const ApiSourceSelection = () => {
         value={quoteApi}
         onChange={(event) => setQuoteApi(event.target.value)}
       >
-        <option value="QUOTE_API_1">Quote API 1</option>
-        <option value="QUOTE_API_2">Quote API 2</option>
-        <option value="QUOTE_API_3">Quote API 3</option>
+        <option value="GOODREADS_TOPIC1">Quote API 1</option>
+        <option value="GOODREADS_TOPIC2">Quote API 2</option>
+        <option value="GOODREADS_TOPIC3">Quote API 3</option>
       </select>
 
       <label htmlFor="videoApi">Video API:</label>
@@ -59,9 +59,9 @@ const ApiSourceSelection = () => {
         value={videoApi}
         onChange={(event) => setVideoApi(event.target.value)}
       >
-        <option value="VIDEO_API_1">Video API 1</option>
-        <option value="VIDEO_API_2">Video API 2</option>
-        <option value="VIDEO_API_3">Video API 3</option>
+        <option value="YOUTUBE_TOPIC1">Video API 1</option>
+        <option value="YOUTUBE_TOPIC2">Video API 2</option>
+        <option value="YOUTUBE_TOPIC3">Video API 3</option>
       </select>
 
       <label htmlFor="pictureApi">Picture API:</label>
@@ -70,9 +70,9 @@ const ApiSourceSelection = () => {
         value={pictureApi}
         onChange={(event) => setPictureApi(event.target.value)}
       >
-        <option value="PICTURE_API_1">Picture API 1</option>
-        <option value="PICTURE_API_2">Picture API 2</option>
-        <option value="PICTURE_API_3">Picture API 3</option>
+        <option value="UNSPLASH_TOPIC1">Wallpapers</option>
+        <option value="UNSPLASH_TOPIC2">Animals</option>
+        <option value="UNSPLASH_TOPIC3">Textures & Patterns</option>
       </select>
 
       <button type="submit">Update API Sources</button>

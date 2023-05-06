@@ -2,21 +2,21 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   enum QuoteApi {
-    QUOTE_API_1
-    QUOTE_API_2
-    QUOTE_API_3
+    GOODREADS_TOPIC1
+    GOODREADS_TOPIC2
+    GOODREADS_TOPIC3
   }
 
   enum VideoApi {
-    VIDEO_API_1
-    VIDEO_API_2
-    VIDEO_API_3
+    YOUTUBE_TOPIC1
+    YOUTUBE_TOPIC2
+    YOUTUBE_TOPIC3
   }
 
   enum PictureApi {
-    PICTURE_API_1
-    PICTURE_API_2
-    PICTURE_API_3
+    UNSPLASH_TOPIC1
+    UNSPLASH_TOPIC2
+    UNSPLASH_TOPIC3
   }
 
   type Profile {
