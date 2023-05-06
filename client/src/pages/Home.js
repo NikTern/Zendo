@@ -9,7 +9,8 @@ import { useState, useEffect } from 'react';
 
 //import API components
 import Picture from '../components/ApiRendering/UnsplashImage';
-import Quote from '../components/ApiRendering/GoodreadsQuote';
+import Quote from '../components/ApiRendering/ApiNinjaQuote';
+import YoutubeVideo from '../components/ApiRendering/YoutubeVideo';
 
 //import API functions
 import { fetchPicApi1, fetchPicApi2, fetchPicApi3 } from '../utils/api';
@@ -50,23 +51,21 @@ const Home = () => {
   };
 
   const fetchQuote = async () => {
-    console.log('fetchQuote() is called');
     let quoteData;
     switch (preferencesData.userPreferences.quoteApi) {
-      case 'GOODREADS_TOPIC1':
+      case 'QUOTE_TOPIC1':
         quoteData = await fetchQuoteApi1();
         break;
-      case 'GOODREADS_TOPIC2':
+      case 'QUOTE_TOPIC2':
         quoteData = await fetchQuoteApi2();
         break;
-      case 'GOODREADS_TOPIC3':
+      case 'QUOTE_TOPIC3':
         quoteData = await fetchQuoteApi3();
         break;
       default:
         console.error('Invalid quote API selection');
     }
     setQuote(quoteData[0]);
-    console.log('Quote data:', quoteData);
   };
 
   const fetchVideo = async () => {
@@ -94,8 +93,12 @@ const Home = () => {
   return (
     <main>
       <div className="flex-row justify-center">
-        <Picture data={picture} />
+        {/* <Picture data={picture} /> */}
+        {picture && <Picture data={picture} />}
+        <br></br>
         {quote && <Quote data={quote} />}
+        <br></br>
+        {video && <YoutubeVideo data={video} />}
       </div>
     </main>
   );

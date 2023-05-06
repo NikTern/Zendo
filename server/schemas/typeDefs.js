@@ -2,9 +2,9 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   enum QuoteApi {
-    GOODREADS_TOPIC1
-    GOODREADS_TOPIC2
-    GOODREADS_TOPIC3
+    QUOTE_TOPIC1
+    QUOTE_TOPIC2
+    QUOTE_TOPIC3
   }
 
   enum VideoApi {

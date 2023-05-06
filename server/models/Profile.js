@@ -21,8 +21,8 @@ const profileSchema = new Schema({
   },
   quoteApi: {
     type: String,
-    enum: ['GOODREADS_TOPIC1', 'GOODREADS_TOPIC2', 'GOODREADS_TOPIC3'],
-    default: 'GOODREADS_TOPIC1',
+    enum: ['QUOTE_TOPIC1', 'QUOTE_TOPIC2', 'QUOTE_TOPIC3'],
+    default: 'QUOTE_TOPIC1',
   },
   videoApi: {
     type: String,

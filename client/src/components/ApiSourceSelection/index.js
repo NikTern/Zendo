@@ -16,7 +16,7 @@ const ApiSourceSelection = () => {
 
   useEffect(() => {
     if (userPreferences) {
-      setQuoteApi(userPreferences.quoteApi || 'GOODREADS_TOPIC1');
+      setQuoteApi(userPreferences.quoteApi || 'QUOTE_TOPIC1');
       setVideoApi(userPreferences.videoApi || 'YOUTUBE_TOPIC1');
       setPictureApi(userPreferences.pictureApi || 'UNSPLASH_TOPIC1');
     }
@@ -48,9 +48,9 @@ const ApiSourceSelection = () => {
         value={quoteApi}
         onChange={(event) => setQuoteApi(event.target.value)}
       >
-        <option value="GOODREADS_TOPIC1">Art</option>
-        <option value="GOODREADS_TOPIC2">Inspirational</option>
-        <option value="GOODREADS_TOPIC3">Love</option>
+        <option value="QUOTE_TOPIC1">Art</option>
+        <option value="QUOTE_TOPIC2">Inspirational</option>
+        <option value="QUOTE_TOPIC3">Love</option>
       </select>
 
       <label htmlFor="videoApi">Video API:</label>
@@ -59,9 +59,9 @@ const ApiSourceSelection = () => {
         value={videoApi}
         onChange={(event) => setVideoApi(event.target.value)}
       >
-        <option value="YOUTUBE_TOPIC1">Video API 1</option>
-        <option value="YOUTUBE_TOPIC2">Video API 2</option>
-        <option value="YOUTUBE_TOPIC3">Video API 3</option>
+        <option value="YOUTUBE_TOPIC1">Travel & Event</option>
+        <option value="YOUTUBE_TOPIC2">Animals & Pets</option>
+        <option value="YOUTUBE_TOPIC3">Science & Technology</option>
       </select>
 
       <label htmlFor="pictureApi">Picture API:</label>
