@@ -1,3 +1,58 @@
+:root {
+  --color-white: #E8EEF1;
+  --color-blue-gray: #D9E4EC;
+  --color-misty-blue: #e1f8fa;
+  --color-baby-blue: #D4F1F4;
+  --color-blue-grotto-light: #6AABD2;
+  --color-blue-grotto: #43B0F1;
+  --color-royal-blue: #057DCD;
+  --color-niki-blue: #366fa1;
+  --color-navy-blue: #1E3D58;
+  --color-black-blue: #071125;
+  --color-deep-blue: #0d1961;
+}
+
+.btn-custom {
+  background-color: var(--color-royal-blue) !important;
+  color: var(--color-white) !important;
+}
+
+.btn-custom:hover {
+  background-color: var(--color-blue-grotto) !important; /* new background color on hover */
+  color: var(--color-white) !important; /* maintain text color on hover */
+}
+
+.btn-custom2 {
+  background-color: var(--color-black-blue) !important;
+  color: var(--color-white) !important;
+}
+
+.btn-custom2:hover {
+  background-color: var(--color-deep-blue) !important; /* new background color on hover */
+  color: var(--color-white) !important; /* maintain text color on hover */
+}
+
+.btn-custom3 {
+  background-color: var(--color-navy-blue) !important;
+  color: var(--color-white) !important;
+}
+
+.btn-custom3:hover {
+  background-color: var(--color-niki-blue) !important; /* new background color on hover */
+  color: var(--color-white) !important; /* maintain text color on hover */
+}
+
+.btn-custom4 {
+  background-color: var(--color-baby-blue) !important;
+  color: var(--color-black-blue) !important;
+}
+
+.btn-custom4:hover {
+  background-color: var(--color-misty-blue) !important; /* new background color on hover */
+  color: var(--color-black-blue) !important; /* maintain text color on hover */
+}
+
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */

@@ -87,8 +87,8 @@ const Home = () => {
   };
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-
+  // if (error) return <div>Error: {error.message}</div>;
+  if (error) return <h3 className='flex-row justify-center pt-5 text-center'> Log in or Sign up to see your Zendo!</h3>;
 
   return (
     <main>
