@@ -32,10 +32,10 @@ const Profile = () => {
   // Rendering the main content of the profile page
   return (
     <div>
-      <h1 className="card-header">{`${profile.name}'s profile`}</h1>
+      <h1 className="card-header text-center">{`${profile.name}'s profile`}</h1>
       <br></br>
 
-      <h3>Feed Selection</h3>
+      <h3 className="text-center">Feed Selection</h3>
       <div>
         <ApiSourceSelection />
       </div>
@@ -43,12 +43,10 @@ const Profile = () => {
       <br></br>
       <br></br>
 
-      <h3>Saved Items</h3>
-      {profile.skills?.length > 0 && <SkillsList skills={profile.skills} isLoggedInUser={true} />}
+      <h3 className="text-center">Saved Items</h3>
 
-      <div className="my-4 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <SkillForm profileId={profile._id} />
-      </div>
+      <p>render saved items here, carousel for each media type</p>
+      <p>[this is the Profile.js page, components to render here will be made separately?]</p>
 
     </div>
   );

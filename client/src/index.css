@@ -1,7 +1,7 @@
 :root {
   --color-white: #E8EEF1;
   --color-blue-gray: #D9E4EC;
-  --color-misty-blue: #e1f8fa;
+  --color-misty-blue: #90e0e8;
   --color-baby-blue: #D4F1F4;
   --color-blue-grotto-light: #6AABD2;
   --color-blue-grotto: #43B0F1;
@@ -50,6 +50,7 @@
 .btn-custom4:hover {
   background-color: var(--color-misty-blue) !important; /* new background color on hover */
   color: var(--color-black-blue) !important; /* maintain text color on hover */
+  text-decoration: underline;
 }
 
 

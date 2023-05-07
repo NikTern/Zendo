@@ -87,18 +87,16 @@ const Home = () => {
   };
 
   if (loading) return <div>Loading...</div>;
-  // if (error) return <div>Error: {error.message}</div>;
   if (error) return <h3 className='flex-row justify-center pt-5 text-center'> Log in or Sign up to see your Zendo!</h3>;
 
   return (
-    <main>
+    <main className=''>
       <div className="flex-row justify-center">
-        {/* <Picture data={picture} /> */}
-        {picture && <Picture data={picture} />}
+        <div className='pb-5 pt-5'>{picture && <Picture data={picture} />}</div>
         <br></br>
-        {quote && <Quote data={quote} />}
+        <div className='pt-3 pb-5'>{quote && <Quote data={quote} />}</div>
         <br></br>
-        {video && <YoutubeVideo data={video} />}
+        <div>{video && <YoutubeVideo data={video} />}</div>
       </div>
     </main>
   );

@@ -62,11 +62,13 @@ router.get('/youtube/:category', async (req, res) => {
       `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=100&type=video&videoCategoryId=${videoCategoryId}&key=${youtubeApiKey}`
     );
     const data = await response.json();
+    // console.log(data)
     const videos = data.items;
     const randomVideoIndex = Math.floor(Math.random() * videos.length);
     const randomVideo = videos[randomVideoIndex];
     res.json(randomVideo);
   } catch (err) {
+    console.error(err)
     res.status(500).json({ error: 'Failed to fetch data from YouTube API' });
   }
 });
