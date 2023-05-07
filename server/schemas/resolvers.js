@@ -126,6 +126,79 @@ const resolvers = {
       // If the user is not authenticated, throw an authentication error
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    // add savePicture, saveQuote, saveVideo, removePicture, removeQuote, and removeVideo resolvers.
+    savePicture: async (parent, { url, alt }, context) => {
+      if (context.user) {
+        const profile = await Profile.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { savedPictures: { url, alt } } },
+          { new: true }
+        );
+        return profile;
+      }
+      throw new AuthenticationError("You must be logged in to do this!");
+    },
+
+    saveQuote: async (parent, { quote, author }, context) => {
+      if (context.user) {
+        const profile = await Profile.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { savedQuotes: { quote, author } } },
+          { new: true }
+        );
+        return profile;
+      }
+      throw new AuthenticationError("You must be logged in to do this!");
+    },
+
+    saveVideo: async (parent, { videoId, title }, context) => {
+      if (context.user) {
+        const profile = await Profile.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { savedVideos: { videoId, title } } },
+          { new: true }
+        );
+        return profile;
+      }
+      throw new AuthenticationError("You must be logged in to do this!");
+    },
+
+    removePicture: async (parent, { url }, context) => {
+      if (context.user) {
+        const profile = await Profile.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedPictures: { url } } },
+          { new: true }
+        );
+        return profile;
+      }
+      throw new AuthenticationError("You must be logged in to do this!");
+    },
+
+    removeQuote: async (parent, { quote }, context) => {
+      if (context.user) {
+        const profile = await Profile.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedQuotes: { quote } } },
+          { new: true }
+        );
+        return profile;
+      }
+      throw new AuthenticationError("You must be logged in to do this!");
+    },
+
+    removeVideo: async (parent, { videoId }, context) => {
+      if (context.user) {
+        const profile = await Profile.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedVideos: { videoId } } },
+          { new: true }
+        );
+        return profile;
+      }
+      throw new AuthenticationError("You must be logged in to do this!");
+    }
   },
 };
 

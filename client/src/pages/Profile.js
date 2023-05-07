@@ -6,6 +6,8 @@ import { useQuery } from '@apollo/client';
 import SkillsList from '../components/SkillsList';
 import SkillForm from '../components/SkillForm';
 
+import SavedItems from '../components/SavedItems.js';
+
 import { QUERY_ME } from '../utils/queries';
 
 import Auth from '../utils/auth';
@@ -44,9 +46,11 @@ const Profile = () => {
       <br></br>
 
       <h3 className="text-center">Saved Items</h3>
+      <br></br>
 
       <p>render saved items here, carousel for each media type</p>
       <p>[this is the Profile.js page, components to render here will be made separately?]</p>
+      <SavedItems profile={profile} />
 
     </div>
   );

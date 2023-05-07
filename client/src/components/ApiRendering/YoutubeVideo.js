@@ -1,6 +1,7 @@
 import React from 'react';
+import SaveButton from '../SaveButton/index.js';
 
-const YoutubeVideo = ({ data }) => {
+const YoutubeVideo = ({ data, savedItems }) => {
   if (!data || !data.id || !data.snippet) {
     return <div>Loading...</div>;
   }
@@ -10,6 +11,20 @@ const YoutubeVideo = ({ data }) => {
   const videoSrc = `https://www.youtube.com/embed/${videoId}`;
 
   return (
+    // <div className="flex-row justify-center pt-5">
+    //   <h5 className="text-center w-100">{videoTitle}</h5>
+    //   <iframe
+    //     className='w-100'
+    //     width="560"
+    //     height="415"
+    //     src={videoSrc}
+    //     title={videoTitle}
+    //     frameBorder="0"
+    //     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    //     allowFullScreen
+    //   ></iframe>
+    // </div>
+
     <div className="flex-row justify-center pt-5">
       <h5 className="text-center w-100">{videoTitle}</h5>
       <iframe
@@ -22,7 +37,10 @@ const YoutubeVideo = ({ data }) => {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       ></iframe>
-    </div>
+      <div className="text-center">
+        <SaveButton type="video" data={data} savedItems={savedItems} />
+      </div>
+  </div>
   );
 };
 

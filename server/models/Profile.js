@@ -40,6 +40,33 @@ const profileSchema = new Schema({
       trim: true,
     },
   ],
+  savedPictures: [
+    {
+      url: {
+        type: String,
+        required: true,
+      },
+      alt: String,
+    },
+  ],
+  savedQuotes: [
+    {
+      quote: {
+        type: String,
+        required: true,
+      },
+      author: String,
+    },
+  ],
+  savedVideos: [
+    {
+      videoId: {
+        type: String,
+        required: true,
+      },
+      title: String,
+    },
+  ],
 });
 
 // set up pre-save middleware to create password

@@ -22,15 +22,48 @@ const Home = () => {
   const [quote, setQuote] = useState(null);
   const [video, setVideo] = useState(null);
 
+
   const { loading, error, data: preferencesData } = useQuery(QUERY_USER_PREFERENCES);
 
+  // useEffect(() => {
+  //   if (preferencesData) {
+  //     fetchPicture();
+  //     fetchQuote();
+  //     fetchVideo();
+  //   }
+  // }, [preferencesData]);
+
+  // useEffect(() => {
+  //   fetchPicture();
+  // }, [preferencesData.userPreferences.pictureApi]);
+  
+  // useEffect(() => {
+  //   fetchQuote();
+  // }, [preferencesData.userPreferences.quoteApi]);
+  
+  // useEffect(() => {
+  //   fetchVideo();
+  // }, [preferencesData.userPreferences.videoApi]);
+
+
   useEffect(() => {
-    if (preferencesData) {
+    if (preferencesData && preferencesData.userPreferences) {
       fetchPicture();
+    }
+  }, [preferencesData?.userPreferences?.pictureApi]);
+
+  useEffect(() => {
+    if (preferencesData && preferencesData.userPreferences) {
       fetchQuote();
+    }
+  }, [preferencesData?.userPreferences?.quoteApi]);
+
+  useEffect(() => {
+    if (preferencesData && preferencesData.userPreferences) {
       fetchVideo();
     }
-  }, [preferencesData]);
+  }, [preferencesData?.userPreferences?.videoApi]);
+
 
   const fetchPicture = async () => {
     let picData;
@@ -92,11 +125,11 @@ const Home = () => {
   return (
     <main className=''>
       <div className="flex-row justify-center">
-        <div className='pb-5 pt-5'>{picture && <Picture data={picture} />}</div>
+        <div className='pb-5 pt-5'>{picture && <Picture data={picture} savedItems={preferencesData.userPreferences.savedPictures || []} />}</div>
         <br></br>
-        <div className='pt-3 pb-5'>{quote && <Quote data={quote} />}</div>
+        <div className='pt-3 pb-5'>{quote && <Quote data={quote} savedItems={preferencesData.userPreferences.savedQuotes || []} />}</div>
         <br></br>
-        <div>{video && <YoutubeVideo data={video} />}</div>
+        <div>{video && <YoutubeVideo data={video} savedItems={preferencesData.userPreferences.savedVideos || []} />}</div>
       </div>
     </main>
   );

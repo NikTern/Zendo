@@ -12,7 +12,6 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Header from './components/Header';
 import Footer from './components/Footer';
 import NewHeader from './components/NewHeader';
 
@@ -62,10 +61,10 @@ function App() {
                 path="/me" 
                 element={<Profile />} 
               />
-              <Route 
+              {/* <Route 
                 path="/profiles/:profileId" 
                 element={<Profile />} 
-              />
+              /> */}
             </Routes>
           </div>
           <Footer />

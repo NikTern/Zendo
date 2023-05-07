@@ -19,6 +19,21 @@ const typeDefs = gql`
     UNSPLASH_TOPIC3
   }
 
+  type Picture {
+    url: String!
+    alt: String
+  }
+
+  type Quote {
+    quote: String!
+    author: String
+  }
+
+  type Video {
+    videoId: String!
+    title: String
+  }
+
   type Profile {
     _id: ID
     name: String
@@ -27,6 +42,9 @@ const typeDefs = gql`
     quoteApi: QuoteApi
     videoApi: VideoApi
     pictureApi: PictureApi
+    savedPictures: [Picture]
+    savedQuotes: [Quote]
+    savedVideos: [Video]
     skills: [String]!
   }
 
@@ -48,6 +66,13 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
 
     updateApis(quoteApi: QuoteApi, videoApi: VideoApi, pictureApi: PictureApi): Profile
+
+    savePicture(url: String!, alt: String): Profile
+    saveQuote(quote: String!, author: String): Profile
+    saveVideo(videoId: String!, title: String): Profile
+    removePicture(url: String!): Profile
+    removeQuote(quote: String!): Profile
+    removeVideo(videoId: String!): Profile
 
     addSkill(profileId: ID!, skill: String!): Profile
     removeProfile: Profile
