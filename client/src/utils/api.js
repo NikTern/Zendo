@@ -48,7 +48,7 @@ export const fetchQuoteApi3 = async () => {
 //---VIDEO API'S---// https://developers.google.com/youtube
 // Fetch random video for Topic 1
 export const fetchVidApi1 = async () => {
-    return
+    // return
     const response = await fetch('/api/youtube/travel&events');
     const data = await response.json();
     return data;
@@ -56,7 +56,7 @@ export const fetchVidApi1 = async () => {
 
 // Fetch random video for Topic 2
 export const fetchVidApi2 = async () => {
-    return
+    // return
     const response = await fetch('/api/youtube/animals');
     const data = await response.json();
     return data;
@@ -64,7 +64,7 @@ export const fetchVidApi2 = async () => {
 
 // Fetch random video for Topic 3
 export const fetchVidApi3 = async () => {
-    return
+    // return
     const response = await fetch('/api/youtube/science&technology');
     const data = await response.json();
     return data;
