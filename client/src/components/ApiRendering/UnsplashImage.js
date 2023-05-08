@@ -6,8 +6,6 @@ const Picture = ({ data, savedItems }) => {
     return <div>Loading...</div>;
   }
 
-  console.log("Data passed to picture component:", data)
-
   return (
     <div className="container pb-5">
       <div className="row justify-content-center">
