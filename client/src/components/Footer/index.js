@@ -16,7 +16,7 @@ const Footer = () => {
             &larr; Go Back
           </button>
         )}
-        <h4>&copy; {new Date().getFullYear()} - Zendo </h4>
+        <h4 className='pt-5'>&copy; {new Date().getFullYear()} - Zendo </h4>
       </div>
     </footer>
   );

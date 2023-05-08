@@ -31,7 +31,7 @@ const Profile = () => {
   // Rendering the main content of the profile page
   return (
     <div>
-      <h1 className="card-header text-center">{`${profile.name}'s profile`}</h1>
+      <h1 className="card-header text-center">{`${profile.name}'s Zendo`}</h1>
       <br></br>
 
       <h3 className="text-center">Feed Preferences</h3>

@@ -24,14 +24,9 @@ const server = new ApolloServer({
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-
 //API ROUTES
 const apiRoutes = require('./apiRoutes/apiRoutes');
 app.use('/api', apiRoutes);
-
-
-
-
 
 // If in production mode, use the built client files
 if (process.env.NODE_ENV === 'production') {

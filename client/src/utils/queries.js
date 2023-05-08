@@ -5,7 +5,6 @@ export const QUERY_PROFILES = gql`
     profiles {
       _id
       name
-      skills
     }
   }
 `;
@@ -15,7 +14,6 @@ export const QUERY_ME = gql`
     me {
       _id
       name
-      skills
       savedPictures {
         url
         alt
@@ -37,7 +35,6 @@ export const QUERY_SINGLE_PROFILE = gql`
     profile(profileId: $profileId) {
       _id
       name
-      skills
       savedPictures {
         url
         alt
@@ -54,16 +51,6 @@ export const QUERY_SINGLE_PROFILE = gql`
   }
 `;
 
-// export const QUERY_USER_PREFERENCES = gql`
-//   query GetUserPreferences {
-//     userPreferences {
-//       quoteApi
-//       videoApi
-//       pictureApi
-//     }
-//   }
-// `;
-
 
 export const QUERY_USER_PREFERENCES = gql`
   query {
@@ -78,24 +65,3 @@ export const QUERY_USER_PREFERENCES = gql`
     }
   }
 `;
-
-
-// export const QUERY_SINGLE_PROFILE = gql`
-//   query singleProfile($profileId: ID!) {
-//     profile(profileId: $profileId) {
-//       _id
-//       name
-//       skills
-//     }
-//   }
-// `;
-
-// export const QUERY_ME = gql`
-//   query me {
-//     me {
-//       _id
-//       name
-//       skills
-//     }
-//   }
-// `;

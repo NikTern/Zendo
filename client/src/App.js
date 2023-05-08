@@ -61,10 +61,6 @@ function App() {
                 path="/me" 
                 element={<Profile />} 
               />
-              {/* <Route 
-                path="/profiles/:profileId" 
-                element={<Profile />} 
-              /> */}
             </Routes>
           </div>
           <Footer />

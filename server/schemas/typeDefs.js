@@ -45,7 +45,6 @@ const typeDefs = gql`
     savedPictures: [Picture]
     savedQuotes: [Quote]
     savedVideos: [Video]
-    skills: [String]!
   }
 
   type Auth {
@@ -74,9 +73,7 @@ const typeDefs = gql`
     removeQuote(quote: String!): Profile
     removeVideo(videoId: String!): Profile
 
-    addSkill(profileId: ID!, skill: String!): Profile
     removeProfile: Profile
-    removeSkill(skill: String!): Profile
   }
 `;
 

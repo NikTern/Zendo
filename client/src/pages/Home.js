@@ -1,8 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 
-import ProfileList from '../components/ProfileList';
-
 import { QUERY_PROFILES, QUERY_USER_PREFERENCES } from '../utils/queries';
 
 import { useState, useEffect } from 'react';

@@ -68,46 +68,11 @@ const resolvers = {
       return { token, profile };
     },
 
-    // Add a third argument to the resolver to access data in our `context`
-    // Define a mutation to add a skill to a user's profile
-    addSkill: async (parent, { profileId, skill }, context) => {
-      // If the user is authenticated, add the skill to the specified profile
-      // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-      if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: profileId },
-          {
-            $addToSet: { skills: skill },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      // If the user is not authenticated, throw an authentication error
-      throw new AuthenticationError('You need to be logged in!');
-    },
-
     // Set up mutation so a logged in user can only remove their profile and no one else's
     removeProfile: async (parent, args, context) => {
       // If the user is authenticated, remove their profile
       if (context.user) {
         return Profile.findOneAndDelete({ _id: context.user._id });
-      }
-      // If the user is not authenticated, throw an authentication error
-      throw new AuthenticationError('You need to be logged in!');
-    },
-
-    // define a mutation so a logged in user can only remove a skill from their own profile
-    removeSkill: async (parent, { skill }, context) => {
-      // If the user is authenticated, remove the specified skill from their profile
-      if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { skills: skill } },
-          { new: true }
-        );
       }
       // If the user is not authenticated, throw an authentication error
       throw new AuthenticationError('You need to be logged in!');

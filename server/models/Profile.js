@@ -34,12 +34,6 @@ const profileSchema = new Schema({
     enum: ['UNSPLASH_TOPIC1', 'UNSPLASH_TOPIC2', 'UNSPLASH_TOPIC3'],
     default: 'UNSPLASH_TOPIC1',
   },
-  skills: [
-    {
-      type: String,
-      trim: true,
-    },
-  ],
   savedPictures: [
     {
       url: {
