@@ -2,9 +2,11 @@ import React from 'react';
 import SaveButton from '../SaveButton/index.js';
 
 const Picture = ({ data, savedItems }) => { 
-  if (!data) {
+  if (!data || !data.urls || !data.urls.regular) {
     return <div>Loading...</div>;
   }
+
+  console.log("Data passed to picture component:", data)
 
   return (
     <div className="container pb-5">

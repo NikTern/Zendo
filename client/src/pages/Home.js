@@ -62,6 +62,7 @@ const Home = () => {
         console.error('Invalid picture API selection');
     }
     setPicture(picData);
+    console.log("Picture data:", picData);
     // localStorage.setItem('picture', JSON.stringify(picData)); //serviceworker test
   };
 
