@@ -12,7 +12,7 @@ const SavedItems = ({ profile }) => {
   return (
     <div>
       <h4>Quotes</h4>
-      <Carousel autoplay speed={1500} autoplaySpeed={6000}>
+      <Carousel autoplay speed={1500} autoplaySpeed={8000}>
         {profile.savedQuotes.map((quote, index) => (
           <div key={index}>
             <Quote
@@ -24,7 +24,7 @@ const SavedItems = ({ profile }) => {
       </Carousel>
 
       <h4>Videos</h4>
-      <Carousel autoplay speed={1500} autoplaySpeed={6000} className='pb-5'>
+      <Carousel autoplay speed={1500} autoplaySpeed={8000} className='pb-5'>
         {profile.savedVideos.map((video, index) => (
           <div key={index}>
             <YoutubeVideo
@@ -39,7 +39,7 @@ const SavedItems = ({ profile }) => {
       <br></br>
       <h4 className='pt-5'>Pictures</h4>
       <div className=''>
-        <Carousel autoplay speed={1500} autoplaySpeed={6000}>
+        <Carousel autoplay speed={1500} autoplaySpeed={8000}>
           {profile.savedPictures.map((picture, index) => (
             <div key={index}>
               <Picture
