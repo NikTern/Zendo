@@ -1,13 +1,13 @@
-const CACHE_NAME = 'zendo-cache-v1';
-const urlsToCache = [
-  '/index.html',
-  '/',
-  '/static/js/bundle.js',
-  '/static/js/main.chunk.js',
-  '/static/js/0.chunk.js',
-  '/static/js/vendors~main.chunk.js',
-  '/manifest.json',
-];
+// const CACHE_NAME = 'zendo-cache-v1';
+// const urlsToCache = [
+//   '/index.html',
+//   '/',
+//   '/static/js/bundle.js',
+//   '/static/js/main.chunk.js',
+//   '/static/js/0.chunk.js',
+//   '/static/js/vendors~main.chunk.js',
+//   '/manifest.json',
+// ];
 
 //1: always shows cached files
 // self.addEventListener('install', (event) => {
@@ -64,14 +64,14 @@ const urlsToCache = [
 // });
 
 
-
-self.addEventListener('fetch', (event) => {
-    if (event.request.url.includes('api.unsplash.com') || event.request.url.includes('api-ninja.com') || event.request.url.includes('www.googleapis.com/youtube')) {
-      return;
-    }
-    event.respondWith(
-      fetch(event.request).catch(() => {
-        return caches.match(event.request);
-      })
-    );
-  });
+//2: short but same
+// self.addEventListener('fetch', (event) => {
+//     if (event.request.url.includes('api.unsplash.com') || event.request.url.includes('api-ninja.com') || event.request.url.includes('www.googleapis.com/youtube')) {
+//       return;
+//     }
+//     event.respondWith(
+//       fetch(event.request).catch(() => {
+//         return caches.match(event.request);
+//       })
+//     );
+//   });

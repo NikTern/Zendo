@@ -16,14 +16,14 @@ import { fetchQuoteApi1, fetchQuoteApi2, fetchQuoteApi3 } from '../utils/api';
 import { fetchVidApi1, fetchVidApi2, fetchVidApi3 } from '../utils/api';
 
 const Home = () => {
-  // const [picture, setPicture] = useState(null);
-  // const [quote, setQuote] = useState(null);
-  // const [video, setVideo] = useState(null);
+  const [picture, setPicture] = useState(null);
+  const [quote, setQuote] = useState(null);
+  const [video, setVideo] = useState(null);
 
   //SERVICE WORKER TEST!!(#@*#**#!#*!@(!!))//
-  const [picture, setPicture] = useState(localStorage.getItem('picture') ? JSON.parse(localStorage.getItem('picture')) : null);
-  const [quote, setQuote] = useState(localStorage.getItem('quote') ? JSON.parse(localStorage.getItem('quote')) : null);
-  const [video, setVideo] = useState(localStorage.getItem('video') || null);
+  // const [picture, setPicture] = useState(localStorage.getItem('picture') ? JSON.parse(localStorage.getItem('picture')) : null);
+  // const [quote, setQuote] = useState(localStorage.getItem('quote') ? JSON.parse(localStorage.getItem('quote')) : null);
+  // const [video, setVideo] = useState(localStorage.getItem('video') || null);
 
 
   const { loading, error, data: preferencesData } = useQuery(QUERY_USER_PREFERENCES);
@@ -62,7 +62,7 @@ const Home = () => {
         console.error('Invalid picture API selection');
     }
     setPicture(picData);
-    localStorage.setItem('picture', JSON.stringify(picData)); //serviceworker test
+    // localStorage.setItem('picture', JSON.stringify(picData)); //serviceworker test
   };
 
   const fetchQuote = async () => {
@@ -81,7 +81,7 @@ const Home = () => {
         console.error('Invalid quote API selection');
     }
     setQuote(quoteData[0]);
-    localStorage.setItem('quote', JSON.stringify(quoteData[0])); //serviceworker test
+    // localStorage.setItem('quote', JSON.stringify(quoteData[0])); //serviceworker test
   };
 
   const fetchVideo = async () => {
@@ -100,7 +100,7 @@ const Home = () => {
         console.error('Invalid video API selection');
     }
     setVideo(videoData);
-    localStorage.setItem('video', `https://www.youtube.com/embed/${videoData.videoId}`); //serviceworker test
+    // localStorage.setItem('video', `https://www.youtube.com/embed/${videoData.videoId}`); //serviceworker test
   };
 
   if (loading) return <div>Loading...</div>;
