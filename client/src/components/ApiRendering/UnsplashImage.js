@@ -2,7 +2,7 @@ import React from 'react';
 import SaveButton from '../SaveButton/index.js';
 
 const Picture = ({ data, savedItems }) => { 
-  if (!data || !data.urls) {
+  if (!data) {
     return <div>Loading...</div>;
   }
 
