@@ -1,0 +1,22 @@
+.selectWidth {
+    width: 100%;
+  }
+  
+
+  @media (max-width: 440px) {
+    .selectWidth {
+      width: 90%;
+    }
+  }
+  
+  @media (max-width: 365px) {
+    .selectWidth {
+      width: 70%;
+    }
+  }
+
+  @media (max-width: 315px) {
+    .selectWidth {
+      width: 50%;
+    }
+  }

@@ -25,27 +25,6 @@ const Home = () => {
 
   const { loading, error, data: preferencesData } = useQuery(QUERY_USER_PREFERENCES);
 
-  // useEffect(() => {
-  //   if (preferencesData) {
-  //     fetchPicture();
-  //     fetchQuote();
-  //     fetchVideo();
-  //   }
-  // }, [preferencesData]);
-
-  // useEffect(() => {
-  //   fetchPicture();
-  // }, [preferencesData.userPreferences.pictureApi]);
-  
-  // useEffect(() => {
-  //   fetchQuote();
-  // }, [preferencesData.userPreferences.quoteApi]);
-  
-  // useEffect(() => {
-  //   fetchVideo();
-  // }, [preferencesData.userPreferences.videoApi]);
-
-
   useEffect(() => {
     if (preferencesData && preferencesData.userPreferences) {
       fetchPicture();
@@ -123,13 +102,13 @@ const Home = () => {
   if (error) return <h3 className='flex-row justify-center pt-5 text-center'> Log in or Sign up to see your Zendo!</h3>;
 
   return (
-    <main className=''>
+    <main className='flex-row justify-content-center'>
       <div className="flex-row justify-center">
         <div className='pb-5 pt-5'>{picture && <Picture data={picture} savedItems={preferencesData.userPreferences.savedPictures || []} />}</div>
         <br></br>
-        <div className='pt-3 pb-5'>{quote && <Quote data={quote} savedItems={preferencesData.userPreferences.savedQuotes || []} />}</div>
+        <div className='pt-5 pb-5'>{quote && <Quote data={quote} savedItems={preferencesData.userPreferences.savedQuotes || []} />}</div>
         <br></br>
-        <div>{video && <YoutubeVideo data={video} savedItems={preferencesData.userPreferences.savedVideos || []} />}</div>
+        <div className='pt-5 w-100'>{video && <YoutubeVideo data={video} savedItems={preferencesData.userPreferences.savedVideos || []} />}</div>
       </div>
     </main>
   );

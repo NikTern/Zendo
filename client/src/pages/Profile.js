@@ -3,9 +3,6 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import SkillsList from '../components/SkillsList';
-import SkillForm from '../components/SkillForm';
-
 import SavedItems from '../components/SavedItems.js';
 
 import { QUERY_ME } from '../utils/queries';
@@ -37,8 +34,8 @@ const Profile = () => {
       <h1 className="card-header text-center">{`${profile.name}'s profile`}</h1>
       <br></br>
 
-      <h3 className="text-center">Feed Selection</h3>
-      <div>
+      <h3 className="text-center">Feed Preferences</h3>
+      <div className='flex-row justify-content-center w-100'>
         <ApiSourceSelection />
       </div>
 
@@ -48,10 +45,7 @@ const Profile = () => {
       <h3 className="text-center">Saved Items</h3>
       <br></br>
 
-      <p>render saved items here, carousel for each media type</p>
-      <p>[this is the Profile.js page, components to render here will be made separately?]</p>
-      <SavedItems profile={profile} />
-
+      <SavedItems profile={profile} />  
     </div>
   );
 };

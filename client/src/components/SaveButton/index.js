@@ -18,7 +18,7 @@ const SaveButton = ({ type, data, savedItems }) => {
     const checkSavedStatus = () => {
       switch (type) {
         case 'picture':
-          setIsSaved(savedItems.some((item) => item.url === data.url));
+          setIsSaved(savedItems.some((item) => item.url === data.urls.regular));
           break;
         case 'quote':
           setIsSaved(savedItems.some((item) => item.quote === data.quote));
@@ -79,9 +79,9 @@ const SaveButton = ({ type, data, savedItems }) => {
   return (
     <div>
       {isSaved ? (
-        <DeleteTwoTone onClick={handleDelete} style={{ fontSize: '3em' }}/>
+        <DeleteTwoTone onClick={handleDelete} style={{ fontSize: '2em' }}/>
       ) : (
-        <SaveTwoTone onClick={handleSave} style={{ fontSize: '3em' }} />
+        <SaveTwoTone onClick={handleSave} style={{ fontSize: '2em' }} />
       )}
     </div>
   );
