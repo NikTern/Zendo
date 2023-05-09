@@ -9,7 +9,6 @@ const urlsToCache = [
   '/manifest.json',
 ];
 
-//1: always shows cached files
 self.addEventListener('install', (event) => {
     event.waitUntil(
       caches.open(CACHE_NAME)
@@ -24,110 +23,53 @@ self.addEventListener('install', (event) => {
         })
     );
   });
-  
+
 // self.addEventListener('fetch', (event) => {
-// //   if (event.request.method === 'POST') {
-// //       return;
-// //   }
-// //   if (event.request.method !== 'GET' || event.request.url.startsWith('chrome-extension')) {
-// //     return;
-// //   }
-// // Exclude API calls from being cached
-//   if (event.request.url.includes('api.unsplash.com') || event.request.url.includes('api-ninja.com') || event.request.url.includes('www.googleapis.com/youtube')) {
+//     const isApiCall = event.request.url.includes('/api/');
+  
+//     if (isApiCall) {
+//       event.respondWith(
+//         fetch(event.request)
+//           .catch((error) => {
+//             console.error('Fetch failed, falling back to cache:', error);
+//             return caches.match(event.request);
+//           })
+//       );
+
+
+//     if (event.request.method === 'POST') {
+//     // Do not cache POST requests
 //     return;
 //     }
-//   event.respondWith(
-//     caches.match(event.request)
-//       .then((response) => {
-//         if (response) {
-//         //   return response;
-//         }
 
-//         return fetch(event.request).then(
-//           (response) => {
-//             if (!response || response.status !== 200 || response.type !== 'basic') {
+//     } else {
+//       event.respondWith(
+//         caches.match(event.request)
+//           .then((response) => {
+//             if (response) {
 //               return response;
 //             }
-
-//             const responseToCache = response.clone();
-
-//             caches.open(CACHE_NAME)
-//               .then((cache) => {
-//                 cache.put(event.request, responseToCache);
+  
+//             return fetch(event.request)
+//               .then((response) => {
+//                 if (!response || response.status !== 200 || response.type !== 'basic') {
+//                   return response;
+//                 }
+  
+//                 const responseToCache = response.clone();
+  
+//                 caches.open(CACHE_NAME)
+//                   .then((cache) => {
+//                     cache.put(event.request, responseToCache);
+//                   });
+  
+//                 return response;
 //               });
-
-//             return response;
-//           }
-//         );
-//       })
-//   );
-// });
-
-
-//2: short but same
-// self.addEventListener('fetch', (event) => {
-//     if (event.request.url.includes('api.unsplash.com') || event.request.url.includes('api-ninja.com') || event.request.url.includes('www.googleapis.com/youtube')) {
-//       return;
+//           })
+//       );
 //     }
-//     event.respondWith(
-//       fetch(event.request).catch(() => {
-//         return caches.match(event.request);
-//       })
-//     );
 //   });
 
-
-
-//9/05 attempt
-
-// const CACHE_NAME = 'my-cache';
-// const urlsToCache = [
-//   '/index.html',
-//   '/',
-//   '/static/js/bundle.js',
-//   '/static/js/main.chunk.js',
-//   '/static/js/0.chunk.js',
-//   '/static/js/vendors~main.chunk.js',
-//   '/manifest.json',
-// ];
-
-// // Install event
-// self.addEventListener('install', (event) => {
-//   event.waitUntil(
-//     caches.open(CACHE_NAME)
-//       .then((cache) => cache.addAll(urlsToCache))
-//   );
-// });
-
-// Fetch event
-// self.addEventListener('fetch', (event) => {
-//   event.respondWith(
-//     caches.match(event.request)
-//       .then((response) => {
-//         if (response) {
-//           return response;
-//         }
-
-//         return fetch(event.request)
-//           .then((response) => {
-//             if (!response || response.status !== 200 || response.type !== 'basic') {
-//               return response;
-//             }
-
-//             const responseToCache = response.clone();
-
-//             caches.open(CACHE_NAME)
-//               .then((cache) => {
-//                 cache.put(event.request, responseToCache);
-//               });
-
-//             return response;
-//           });
-//       })
-//   );
-// });
-
-// Fetch event it told me to replce the fetch event with
 self.addEventListener('fetch', (event) => {
     const isApiCall = event.request.url.includes('/api/');
   
@@ -139,79 +81,29 @@ self.addEventListener('fetch', (event) => {
             return caches.match(event.request);
           })
       );
-
-
-    if (event.request.method === 'POST') {
-    // Do not cache POST requests
-    return;
-    }
-    
     } else {
       event.respondWith(
-        caches.match(event.request)
+        // First, try to fetch the resource from the network
+        fetch(event.request)
           .then((response) => {
-            if (response) {
-              return response;
+            // If the response is valid, clone it and store it in the cache
+            if (response && response.status === 200 && response.type === 'basic') {
+              const responseToCache = response.clone();
+              caches.open(CACHE_NAME)
+                .then((cache) => {
+                  cache.put(event.request, responseToCache);
+                });
             }
-  
-            return fetch(event.request)
-              .then((response) => {
-                if (!response || response.status !== 200 || response.type !== 'basic') {
-                  return response;
-                }
-  
-                const responseToCache = response.clone();
-  
-                caches.open(CACHE_NAME)
-                  .then((cache) => {
-                    cache.put(event.request, responseToCache);
-                  });
-  
-                return response;
-              });
+            return response;
+          })
+          .catch((error) => {
+            // If the network request fails, try to serve the content from the cache
+            console.error('Network request failed, falling back to cache:', error);
+            return caches.match(event.request);
           })
       );
     }
   });
-
-
-
-//new test one:
-// Fetch event
-// self.addEventListener('fetch', (event) => {
-//     const isApiCall = event.request.url.includes('/api/');
-  
-//     if (isApiCall) {
-//       event.respondWith(
-//         fetch(event.request)
-//           .then((response) => {
-//             if (!response || response.status !== 200 || response.type !== 'basic') {
-//               return response;
-//             }
-  
-//             const responseToCache = response.clone();
-  
-//             caches.open(CACHE_NAME)
-//               .then((cache) => {
-//                 cache.put(event.request, responseToCache);
-//               });
-  
-//             return response;
-//           })
-//           .catch((error) => {
-//             console.error('Fetch failed, falling back to cache:', error);
-//             return caches.match(event.request);
-//           })
-//       );
-//     } else {
-//       event.respondWith(
-//         caches.match(event.request)
-//           .then((response) => {
-//             return response || fetch(event.request);
-//           })
-//       );
-//     }
-//   });
 
 
 // Activate event
