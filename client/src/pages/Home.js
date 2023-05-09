@@ -20,13 +20,8 @@ const Home = () => {
   const [quote, setQuote] = useState(null);
   const [video, setVideo] = useState(null);
 
-  //SERVICE WORKER TEST!!(#@*#**#!#*!@(!!))//
-  // const [picture, setPicture] = useState(localStorage.getItem('picture') ? JSON.parse(localStorage.getItem('picture')) : null);
-  // const [quote, setQuote] = useState(localStorage.getItem('quote') ? JSON.parse(localStorage.getItem('quote')) : null);
-  // const [video, setVideo] = useState(localStorage.getItem('video') || null);
-
-
   const { loading, error, data: preferencesData } = useQuery(QUERY_USER_PREFERENCES);
+  //PRE-SERVICEWORKER CODE, KEEP FOR REFERENCE + BACKUP
   // useEffect(() => {
   //   if (preferencesData && preferencesData.userPreferences && navigator.onLine) {
   //     fetchPicture();
@@ -95,7 +90,7 @@ const Home = () => {
         console.error('Invalid picture API selection');
     }
     setPicture(picData);
-    localStorage.setItem('picture', JSON.stringify(picData)); //serviceworker test
+    localStorage.setItem('picture', JSON.stringify(picData)); //serviceworker code
   };
 
   const fetchQuote = async () => {
@@ -114,7 +109,7 @@ const Home = () => {
         console.error('Invalid quote API selection');
     }
     setQuote(quoteData[0]);
-    localStorage.setItem('quote', JSON.stringify(quoteData[0])); //serviceworker test
+    localStorage.setItem('quote', JSON.stringify(quoteData[0])); //serviceworker code
   };
 
   const fetchVideo = async () => {
@@ -133,7 +128,7 @@ const Home = () => {
         console.error('Invalid video API selection');
     }
     setVideo(videoData);
-    localStorage.setItem('video', `https://www.youtube.com/embed/${videoData.videoId}`); //serviceworker test
+    localStorage.setItem('video', `https://www.youtube.com/embed/${videoData.videoId}`); //serviceworker code
   };
 
   if (loading) return <div>Loading...</div>;

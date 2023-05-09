@@ -11,31 +11,7 @@ import Auth from '../utils/auth';
 
 import ApiSourceSelection from '../components/ApiSourceSelection';
 
-
-//import useonline
-// import useOnlineStatus from '../components/OnlineCheck/useOnlineStatus';
-// import { useEffect } from 'react';
-
-
 const Profile = () => {
-  
-  //-----------//
-  // const isOnline = useOnlineStatus();
-
-  // useEffect(() => {
-  //   if (isOnline) {
-  //     // Call your API functions to refresh the data when the user goes from offline to online
-  //     fetchData();
-  //   }
-  // }, [isOnline]);
-
-  // const fetchData = async () => {
-  //   const { loading, data } = useQuery(QUERY_ME);
-  //   // Update your component state or context with the fetched data
-  // };
-  //-----------//
-
-
   // Executing the QUERY_ME query to fetch the logged-in user's information
   const { loading, data } = useQuery(QUERY_ME);
 
