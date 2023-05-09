@@ -27,22 +27,55 @@ const Home = () => {
 
 
   const { loading, error, data: preferencesData } = useQuery(QUERY_USER_PREFERENCES);
+  // useEffect(() => {
+  //   if (preferencesData && preferencesData.userPreferences && navigator.onLine) {
+  //     fetchPicture();
+  //   }
+  // }, [preferencesData?.userPreferences?.pictureApi]);
+
+  // useEffect(() => {
+  //   if (preferencesData && preferencesData.userPreferences && navigator.onLine) {
+  //     fetchQuote();
+  //   }
+  // }, [preferencesData?.userPreferences?.quoteApi]);
+
+  // useEffect(() => {
+  //   if (preferencesData && preferencesData.userPreferences && navigator.onLine) {
+  //     fetchVideo();
+  //   }
+  // }, [preferencesData?.userPreferences?.videoApi]);
+
 
   useEffect(() => {
-    if (preferencesData && preferencesData.userPreferences && navigator.onLine) {
-      fetchPicture();
+    if (preferencesData && preferencesData.userPreferences) {
+      if (navigator.onLine) {
+        fetchPicture();
+      } else {
+        const cachedPicture = localStorage.getItem('picture');
+        if (cachedPicture) setPicture(JSON.parse(cachedPicture));
+      }
     }
   }, [preferencesData?.userPreferences?.pictureApi]);
-
+  
   useEffect(() => {
-    if (preferencesData && preferencesData.userPreferences && navigator.onLine) {
-      fetchQuote();
+    if (preferencesData && preferencesData.userPreferences) {
+      if (navigator.onLine) {
+        fetchQuote();
+      } else {
+        const cachedQuote = localStorage.getItem('quote');
+        if (cachedQuote) setQuote(JSON.parse(cachedQuote));
+      }
     }
   }, [preferencesData?.userPreferences?.quoteApi]);
-
+  
   useEffect(() => {
-    if (preferencesData && preferencesData.userPreferences && navigator.onLine) {
-      fetchVideo();
+    if (preferencesData && preferencesData.userPreferences) {
+      if (navigator.onLine) {
+        fetchVideo();
+      } else {
+        const cachedVideo = localStorage.getItem('video');
+        if (cachedVideo) setVideo({ videoId: cachedVideo });
+      }
     }
   }, [preferencesData?.userPreferences?.videoApi]);
 
@@ -62,7 +95,7 @@ const Home = () => {
         console.error('Invalid picture API selection');
     }
     setPicture(picData);
-    // localStorage.setItem('picture', JSON.stringify(picData)); //serviceworker test
+    localStorage.setItem('picture', JSON.stringify(picData)); //serviceworker test
   };
 
   const fetchQuote = async () => {
@@ -81,7 +114,7 @@ const Home = () => {
         console.error('Invalid quote API selection');
     }
     setQuote(quoteData[0]);
-    // localStorage.setItem('quote', JSON.stringify(quoteData[0])); //serviceworker test
+    localStorage.setItem('quote', JSON.stringify(quoteData[0])); //serviceworker test
   };
 
   const fetchVideo = async () => {
@@ -100,7 +133,7 @@ const Home = () => {
         console.error('Invalid video API selection');
     }
     setVideo(videoData);
-    // localStorage.setItem('video', `https://www.youtube.com/embed/${videoData.videoId}`); //serviceworker test
+    localStorage.setItem('video', `https://www.youtube.com/embed/${videoData.videoId}`); //serviceworker test
   };
 
   if (loading) return <div>Loading...</div>;
